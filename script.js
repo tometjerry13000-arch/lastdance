@@ -679,7 +679,7 @@ IMPORTANT - PRÉPARATION POUR LA PARTIE 2 :
         const publicInteraction = this.getPublicInteraction();
         const floatingTexts = this.generateFloatingWords('part2');
         
-        // TOUTES LES TRANSFORMATIONS SONT GÉNÉRÉES ICI
+        // TOUTES LES TRANSFORMATIONS SONT GÉNÉRÉES ICI (UNIQUEMENT EN PARTIE 2)
         const alienTransformations = this.generateAlienTransformations();
         const avatarTransformations = this.generateAvatarTransformations();
         const specialFeatures = this.generateSpecialFeatures();
@@ -703,7 +703,7 @@ CONTINUITÉ PARFAITE DU VISAGE - ABSOLUMENT CRUCIAL :
 - Le sujet est STRICTEMENT IDENTIQUE à celui de la PARTIE 1
 - MÊMES TRAITS, MÊME VISAGE, expression encore plus intense
 - RECONNAISSABLE AU PREMIER COUP D'ŒIL - AUCUNE ERREUR POSSIBLE
-- La transformation ne concerne QUE les vêtements, PAS le visage
+- La transformation ne concerne QUE les vêtements, le corps et les accessoires, PAS le visage
 ${avatarTransformations.includes('VISAGE HUMAIN CONSERVÉ') ? '- ⚠️ Le visage reste HUMAIN et IDENTIQUE à la partie 1 - seuls les éléments Na\'vi sont ajoutés' : ''}
 ${specialFeatures.includes('YEUX ULTRA-RÉALISTES 8K (HÉTÉROCHROMIE)') ? '- ⚠️ Les yeux restent différents mais conservent la même précision 8K' : ''}
 
