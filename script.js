@@ -1,5 +1,6 @@
 // script.js - Version ULTIME avec TOUS les effets - TABLEAUX ALIEN COMPLETS + OPTIONS SPÉCIALES
 // CORRIGÉ : Les transformations Avatar/Alien n'apparaissent que dans la PARTIE 2
+// CORRIGÉ : Gestion des deux cas Avatar (visage humain conservé OU transformation complète) pour TOUS les types d'avatar
 
 console.log("🚀 Chargement de script.js...");
 
@@ -697,26 +698,82 @@ IMPORTANT - PRÉPARATION POUR LA PARTIE 2 :
         
         const baseEffectsText = baseEffects.length > 0 ? baseEffects.join(', ') : 'poudre scintillante';
 
+        // Vérifier les options Avatar
+        const avatarMode = document.getElementById('enableAvatarMode')?.checked || false;
+        const keepFace = document.getElementById('avatarKeepFace')?.checked || false;
+
+        // Déterminer les instructions visage selon le cas
+        let faceInstructions = '';
+        let eyesInstructions = '';
+
+        if (avatarMode && !keepFace) {
+            // CAS 1 : Avatar COMPLET (visage transformé)
+            faceInstructions = `
+👇 INSTRUCTIONS POUR UN VISAGE AVATAR COMPLET 👇
+- Transformation COMPLète en Na'vi
+- Peau bleue caractéristique (${document.getElementById('avatarSkinTone')?.value || 'bleu nuit'})
+- Traits faciaux Na'vi : nez large, arcades sourcilières prononcées, expression alien
+- Oreilles pointues
+- Peintures tribales sur le visage selon le type d'avatar (standard/guerrier/chef)
+- Expression ${country.dance === "Danse de Combat" ? "guerrière et fière" : country.dance === "Danse du Chef" ? "majestueuse et autoritaire" : "mystique et en harmonie avec la nature"}`;
+            
+            eyesInstructions = `
+👁️ YEUX AVATAR CARACTÉRISTIQUES :
+- Iris de couleur jaune/or caractéristique des Na'vi
+- Pupilles verticales comme un félin
+- Expression perçante et mystique
+- Reflets lumineux dans les yeux
+- Netteté maximale sur les yeux (point focal de l'image)`;
+        } else {
+            // CAS 2 : Visage humain conservé (pour avatar ET pour non-avatar)
+            faceInstructions = `
+👇 INSTRUCTIONS ULTRA-RÉALISTES POUR UN VISAGE HUMAIN AUTHENTIQUE 👇
+- Rendu hyper réaliste style photo professionnelle (PAS DE RENDU IA LISSE)
+- Peau avec texture naturelle : pores visibles à différentes échelles, relief cutané
+- Imperfections subtiles conservées : petits grains de beauté, rougeurs légères, variations de teinte
+- Poils de duvet très fins visibles sur les joues et le contour du visage
+- Cils : chaque cil est individuel, courbé naturellement, pas en paquets
+- Sourcils : poils dessinés un par un, avec différentes directions et épaisseurs
+- Lèvres : texture naturelle avec de minuscules ridules, reflets humides
+- Le visage doit être STRICTEMENT IDENTIQUE à l'image de référence - AUCUNE modification des traits`;
+            
+            eyesInstructions = `
+👁️ YEUX ULTRA-RÉALISTES 8K :
+- Iris hyper détaillés avec motifs complexes (comme une photo macro)
+- Vaisseaux sanguins très fins visibles dans le blanc de l'œil
+- Reflets multiples dans les yeux (catchlights) nets et naturels
+- Pupilles qui réagissent à la lumière
+- Netteté maximale sur les yeux (point focal de l'image)`;
+        }
+
         return `Suite de la transition - DEUXIÈME PARTIE de 6 secondes.
 
 CONTINUITÉ PARFAITE DU VISAGE - ABSOLUMENT CRUCIAL :
 - Le sujet est STRICTEMENT IDENTIQUE à celui de la PARTIE 1
 - MÊMES TRAITS, MÊME VISAGE, expression encore plus intense
 - RECONNAISSABLE AU PREMIER COUP D'ŒIL - AUCUNE ERREUR POSSIBLE
-- La transformation ne concerne QUE les vêtements, le corps et les accessoires, PAS le visage
+- La transformation ne concerne QUE les vêtements, le corps et les accessoires
 ${avatarTransformations.includes('VISAGE HUMAIN CONSERVÉ') ? '- ⚠️ Le visage reste HUMAIN et IDENTIQUE à la partie 1 - seuls les éléments Na\'vi sont ajoutés' : ''}
 ${specialFeatures.includes('YEUX ULTRA-RÉALISTES 8K (HÉTÉROCHROMIE)') ? '- ⚠️ Les yeux restent différents mais conservent la même précision 8K' : ''}
 
-👇 INSTRUCTIONS ULTRA-RÉALISTES RENFORCÉES (VISAGE INCHANGÉ) 👇
-- Le visage est STRICTEMENT IDENTIQUE à la PARTIE 1 avec la même texture microscopique
-- Même peau : pores visibles à différentes échelles, grains de beauté, rougeurs légères
-- Mêmes cils individuels, mêmes sourcils avec poils distincts
-- 👁️ YEUX 8K NATURELS conservés : iris hyper détaillés, vaisseaux sanguins visibles, reflets multiples nets
-- Même éclairage Rembrandt qui sculpte les volumes
-- Même grain de film léger, pas de lissage artificiel
-- MÊMES IMPERFECTIONS NATURELLES conservées - asymétries, petits défauts
-- AUCUN filtre beauté - rendu 100% naturel et humain
-- Le visage doit être INDISCERNABLE d'une vraie photo professionnelle
+${faceInstructions}
+
+${eyesInstructions}
+
+ÉCLAIRAGE CINÉMATOGRAPHIQUE NATUREL :
+- Éclairage de type Rembrandt doux : triangle de lumière sur la joue
+- Source principale à 45°, ombres naturelles qui sculptent les volumes
+- Reflets naturels dans les yeux qui donnent de la vie au regard
+- La lumière révèle la texture de la peau, ne la gomme pas
+
+RENDU PHOTOGRAPHIQUE AUTHENTIQUE :
+- Grain de film léger pour éviter l'aspect "plastique" des IA
+- Pas de filtre beauté, pas de lissage excessif
+${!avatarMode || keepFace ? `
+- Le visage doit être indiscernable d'une vraie photo professionnelle
+- Asymétries naturelles du visage conservées (pas de symétrie parfaite)` : `
+- Le visage doit être parfaitement intégré au corps Na'vi
+- Rendu cohérent et réaliste de la transformation`}
 
 ⚠️ TRANSITION NATURELLE - INSTRUCTION CAPITALE ⚠️ :
 - Pendant le court instant où les mains masquaient l'objectif (fin de la PARTIE 1), elle a eu le temps de SE CHANGER COMPLÈTEMENT
@@ -843,7 +900,7 @@ RAPPEL ULTIME - TRANSITION NATURELLE :
             if (keepFace) {
                 avatarLine = '\n15. ⚠️ MODE AVATAR AVEC VISAGE HUMAIN CONSERVÉ : Le visage reste STRICTEMENT IDENTIQUE à l\'image de référence (mêmes traits, mêmes imperfections), seul le corps devient Na\'vi';
             } else {
-                avatarLine = '\n15. MODE AVATAR ACTIVÉ : Transformation complète en Na\'vi (peau bleue, traits alien)';
+                avatarLine = '\n15. MODE AVATAR ACTIVÉ : Transformation COMPLÈTE en Na\'vi (peau bleue, traits alien, yeux jaunes)';
             }
         }
         
@@ -860,8 +917,8 @@ RAPPEL ULTIME - TRANSITION NATURELLE :
 
 1. VISAGE IDENTIQUE : Le sujet de la PARTIE 2 a EXACTEMENT le même visage que la PARTIE 1 - AUCUNE ERREUR POSSIBLE
 2. TRANSITION NATURELLE OBLIGATOIRE : La transformation a eu lieu HORS CAMÉRA pendant que les mains cachaient l'objectif - RIEN de magique, tout est DÉJÀ FAIT au début de la partie 2
-3. RENDU ULTRA-RÉALISTE DU VISAGE : Peau avec pores, grains de beauté, imperfections - PAS DE PEAU LISSE IA
-4. YEUX 8K NATURELS : Iris hyper détaillés, vaisseaux visibles, reflets multiples nets
+3. RENDU ULTRA-RÉALISTE DU VISAGE : ${!avatarMode || keepFace ? 'Peau avec pores, grains de beauté, imperfections - PAS DE PEAU LISSE IA' : 'Peau bleue Na\'vi avec traits alien caractéristiques'}
+4. YEUX 8K : ${!avatarMode || keepFace ? 'Iris hyper détaillés, vaisseaux visibles, reflets multiples nets' : 'Iris jaunes/or avec pupilles verticales'}
 5. SILENCE TOTAL : Pas un mot - elle communique par sa danse, ses regards et ses sourires
 6. SÉDUCTION MAGNÉTIQUE : Elle est charmeuse, captivante, elle joue avec le spectateur
 7. GESTES DE SÉDUCTION DIRECTE : ${this.userData.gestures.bisous ? 'BISOUS à la caméra' : ''} ${this.userData.gestures.viens ? 'et gestes "VIENS"' : ''}
@@ -1025,13 +1082,14 @@ function updateRecap() {
     const fluoActive = document.getElementById('enableFluo')?.checked ? 'OUI' : 'NON';
     const alienActive = document.getElementById('enableAlienMode')?.checked ? '👽' : '';
     const avatarActive = document.getElementById('enableAvatarMode')?.checked ? '🔵' : '';
+    const keepFace = document.getElementById('avatarKeepFace')?.checked ? '👤' : '';
     const eyesActive = document.getElementById('enable-eyes')?.checked ? '👁️' : '';
     const skinActive = document.getElementById('enable-skin')?.checked ? '🎨' : '';
     
     const recap = `
 🌍 Personnage : ${country.name}
 💃 Danse : ${country.dance}
-💇 Cheveux fluo : ${fluoActive} ${alienActive} ${avatarActive} ${eyesActive} ${skinActive}
+💇 Cheveux fluo : ${fluoActive} ${alienActive} ${avatarActive} ${keepFace} ${eyesActive} ${skinActive}
     `;
     
     const recapDiv = document.getElementById('recapContent');
@@ -1332,4 +1390,4 @@ window.initCharacters = initCharacters;
 window.displayPrompt = displayPrompt;
 window.updateRecap = updateRecap;
 
-console.log("📦 script.js chargé avec TOUS les effets - CORRIGÉ : transformations Avatar/Alien uniquement en PARTIE 2");
+console.log("📦 script.js chargé avec TOUS les effets - CORRIGÉ : transformations Avatar/Alien uniquement en PARTIE 2 - Gestion des 4 cas Avatar");
