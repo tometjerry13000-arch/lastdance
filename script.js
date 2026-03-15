@@ -1,4 +1,5 @@
 // script.js - Version ULTIME avec TOUS les effets - TABLEAUX ALIEN COMPLETS + OPTIONS SPÉCIALES
+// CORRIGÉ : Les transformations Avatar/Alien n'apparaissent que dans la PARTIE 2
 
 console.log("🚀 Chargement de script.js...");
 
@@ -544,6 +545,7 @@ class PromptGenerator {
         return 'ultra-séductrice, magnétique, explosive';
     }
 
+    // ===== PARTIE 1 - AUCUNE TRANSFORMATION =====
     generatePart1() {
         const country = countries[this.userData.country];
         const seductionPhrase = this.getSeductionPhrase(this.userData.seductionLevel);
@@ -567,9 +569,6 @@ class PromptGenerator {
             'mouvements sensuels';
 
         const floatingTexts = this.generateFloatingWords('part1');
-        const alienTransformations = this.generateAlienTransformations();
-        const avatarTransformations = this.generateAvatarTransformations();
-        const specialFeatures = this.generateSpecialFeatures(); // ← NOUVEAU
 
         return `Une transition de danse synchronisée à haute énergie en 4k, basée sur l'image fournie - PREMIÈRE PARTIE de 6 secondes.
 
@@ -604,14 +603,10 @@ RENDU PHOTOGRAPHIQUE AUTHENTIQUE :
 - Pas de filtre beauté, pas de lissage excessif
 - Le visage doit être indiscernable d'une vraie photo professionnelle
 - Asymétries naturelles du visage conservées (pas de symétrie parfaite)
-${avatarTransformations.includes('VISAGE HUMAIN CONSERVÉ') ? '- ⚠️ ATTENTION : Le visage reste STRICTEMENT IDENTIQUE à l\'image de référence, seuls les traits Na\'vi sont ajoutés' : ''}
-${specialFeatures.includes('YEUX ULTRA-RÉALISTES 8K (HÉTÉROCHROMIE)') ? '- ⚠️ Les deux yeux sont différents mais conservent une précision 8K exceptionnelle' : ''}
 
 Expression ${seductionPhrase} : elle joue avec le spectateur, le captive, le séduit
 Regards complices et coquins
-${alienTransformations}
-${avatarTransformations}
-${specialFeatures}
+
 LES MAINS PEINTES (COULEURS ANNONÇATRICES) :
 - Paume gauche : peinture ${this.userData.leftPalmColorName}
 - Paume droite : peinture ${this.userData.rightPalmColorName}
@@ -650,6 +645,7 @@ IMPORTANT - PRÉPARATION POUR LA PARTIE 2 :
 - La PARTIE 2 commencera avec le résultat FINAL déjà visible`;
     }
 
+    // ===== PARTIE 2 - TOUTES LES TRANSFORMATIONS APPLIQUÉES =====
     generatePart2() {
         const country = countries[this.userData.country];
         const seductionPhrase = this.getSeductionPhrase(this.userData.seductionLevel);
@@ -682,9 +678,12 @@ IMPORTANT - PRÉPARATION POUR LA PARTIE 2 :
         const finalOption = this.getFinalOption();
         const publicInteraction = this.getPublicInteraction();
         const floatingTexts = this.generateFloatingWords('part2');
+        
+        // TOUTES LES TRANSFORMATIONS SONT GÉNÉRÉES ICI
         const alienTransformations = this.generateAlienTransformations();
         const avatarTransformations = this.generateAvatarTransformations();
-        const specialFeatures = this.generateSpecialFeatures(); // ← NOUVEAU
+        const specialFeatures = this.generateSpecialFeatures();
+        
         const advancedEffects = this.generateAdvancedEffects();
         const script = this.generateScript();
 
@@ -747,6 +746,7 @@ ${this.userData.enableFluo ?
 - Reflets néon qui attirent le regard` : 
 `- Les cheveux conservent leur couleur naturelle (${this.userData.naturalHair})
 - Coiffés élégamment (déjà fait)`}
+
 ${alienTransformations}
 ${avatarTransformations}
 ${specialFeatures}
@@ -1332,4 +1332,4 @@ window.initCharacters = initCharacters;
 window.displayPrompt = displayPrompt;
 window.updateRecap = updateRecap;
 
-console.log("📦 script.js chargé avec TOUS les effets - TABLEAUX ALIEN COMPLETS + OPTIONS SPÉCIALES 8K");
+console.log("📦 script.js chargé avec TOUS les effets - CORRIGÉ : transformations Avatar/Alien uniquement en PARTIE 2");
